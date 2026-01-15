@@ -1,0 +1,45 @@
+<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ludo Single Player</title>
+  <link rel="stylesheet" href="game.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>🎲 Ludo GO - Single Player</h1>
+  </header>
+  <main id="game-container">
+    <div id="canvas-container"></div>
+
+    <div id="settings-menu" class="hidden">
+      <div id="settings-content">
+        <h2>Settings & Rules</h2>
+        <label><input type="checkbox" id="sound-toggle" checked> Enable Sound</label>
+        <button id="save-settings">Save & Close</button>
+      </div>
+    </div>
+
+    <div id="controls">
+      <div id="info">
+        <div id="turn-display">Turn: Waiting...</div>
+        <div id="dice-result">Dice: -</div>
+      </div>
+      <div id="buttons">
+        <button id="start-btn">Start Game ▶️</button>
+        <button id="roll-dice-btn">Roll Dice 🎲</button>
+        <button id="pause-btn">Pause ⏸️</button>
+        <button id="restart-btn">Restart ♻️</button>
+        <button id="settings-btn">Settings ⚙️</button>
+      </div>
+    </div>
+    
+  </main>
+
+  <script src="player.js"></script>
+  <script src="token.js"></script>
+  <script src="game.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

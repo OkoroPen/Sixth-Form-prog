@@ -1,0 +1,90 @@
+ if (newBoard[from.r][from.c] !== " ") {
+        newBoard[from.r][from.c] !== "green";
+    }
+    newBoard[to.r][to.c] = "blue"
+
+    return newBoard
+}
+let from = { r: 5, c: 0 };
+let to = { r: 4, c: 1 }
+
+console.log(HighlightMove(board, from, to));
+
+
+
+
+
+
+
+
+
+
+
+function HighlightMove(board) {
+    let newBoard = JSON.parse(JSON.stringify(board));
+
+    let directions = {
+        "White": [[-1, -1], [-1, 1]],
+        "Black": [[1, -1], [1, -1]]
+    };
+    for (let r = 0; r < BOARDSIZE; r++) {
+        for (let c = 0; c < board[r].length; c++) {
+            let piece = board[r][c];
+            if (piece = board[r][c]);
+            if (piece === "White" || piece === "Black") {
+                for (let [dr, dc] of directions[piece]) {
+                    let newr = r + dr;
+                    let newc = c + dc
+
+                    if (newBoard[newr] && newBoard[newr][newc] === " ") {
+                        newBoard[newr][newc] = "blue"
+                    }
+                }
+            }
+        }
+    }
+    return newBoard
+}
+
+function MovePiece(board, from, to) {
+    let newBoard = board.map(r => r.slice());
+    let piece = newBoard[from.r][from.col];
+
+    if (piece !== " " && newBoard[to.r][to.c] === " ") {
+        newBoard[to.r][to.c] = piece;
+        newBoard[from.r][from.c] = " ";
+
+        let middleRow = (from.r + to.r) / 2
+        let middleCol = (from.c + to.c) / 2
+        if (Math.abs(from.r - to.r) === 2) {
+            newBoard[middleRow][middleCol] = " ";
+        }
+    }
+    return newBoard
+}
+
+
+
+
+/*function MovePiece(board, from, to) {
+    let newBoard = board.map(r => r.slice());
+    let piece = newBoard[from.r][from.col];
+
+    if (piece !== " " && newBoard[to.r][to.c] === " ") {
+        newBoard[to.r][to.c] = piece;
+        newBoard[from.r][from.c] = " ";
+
+        let middleRow = (from.r + to.r) / 2
+        let middleCol = (from.c + to.c) / 2
+        if (Math.abs(from.r - to.r) === 2) {
+            newBoard[middleRow][middleCol] = " ";
+        }
+    }
+    return newBoard
+}*/
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.2/p5.js"></script>
+    <script src="charades.js"></script>
+</head>
+
+</html>
+<html>
+  <head>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.js"></script>
+  </head>
+  <body>
+    <script>
+      var socket = io();
+      var c;
+
+      function setup() {
+        createCanvas(1000, 600);
+        background(250);
+        colorMode(HSB, 100);
+        c = random(255);
+        ellipseMode(CENTER);
+      }
+
+      socket.on("coord", function (data) {
+        fill(data.c, 100, 100);
+        ellipse(data.x, data.y, 20, 20);
+      });
+
+      function mouseDragged() {
+        socket.emit("newCo", { x: mouseX, y: mouseY, c: c });
+      }
+    </script>
+  </body>
+</html>

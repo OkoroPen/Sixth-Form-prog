@@ -1,0 +1,40 @@
+<html>
+<head>
+  <title>Ludo GO</title> <!--Page title shown in browser-->
+  <link rel="stylesheet" href="homepage.css"> <!--Link to homepage style sheet-->
+</head>
+<body>
+  <!--Login container-->
+  <div class="container">
+    <h1>🎲 Ludo GO </h1> 
+    <!--Player Name Input-->
+    <label for="playerName">Enter Your Name:</label><br>
+    <input type="text" id="playerName" placeholder= required><br>
+    <!--Colour Selection-->
+    <label for="playerColor">Choose Your Color:</label><br>
+    <select id="playerColor">
+      <option value="red">🔴 Red</option>
+      <option value="green">💚 Green</option>
+      <option value="blue">🔵 Blue</option>
+      <option value="yellow">💛 Yellow</option>
+    </select><br>
+    <!--Start game button-->
+    <button id="startBtn">Start Game</button>
+  </div>
+
+  <script>
+    document.getElementById("startBtn").addEventListener("click", function() {
+      const name = document.getElementById("playerName").value.trim();
+      const color = document.getElementById("playerColor").value;
+
+      if (!name) {
+        alert("Please enter your name before starting!");
+        return;
+      }
+      localStorage.setItem("playerName", name);
+      localStorage.setItem("playerColor", color);
+      window.location.href = "game.html";
+    });
+  </script>
+</body>
+</html>

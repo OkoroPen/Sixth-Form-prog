@@ -1,0 +1,14 @@
+body {
+    background-color: #f5e9e9;
+    /* Light mode background */
+    color: #ebe3e3;
+    /* Light mode text color */
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transitions */
+}
+
+.dark-mode {
+    background-color: #333;
+    color: #161414;
+
+}

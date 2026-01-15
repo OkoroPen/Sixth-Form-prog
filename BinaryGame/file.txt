@@ -1,0 +1,76 @@
+function ValidMove(x, y, newValue) {
+    puzzle[y][x] = newValue
+    let valid = true
+
+    for (let j = 0; j < BOARDSIZE - 2; j++) {
+        if (grid[row][j] === grid[row][j + 1] && grid[row][j] === grid[row][j + 2] && grid[row][j] === newValue)
+            alert("Fail")
+    }
+    for (let i = 0; i < BOARDSIZE - 2; i++) {
+        if (grid[col][i] === grid[col][i + 1] && grid[col][i] === grid[col][i + 2] && grid[col][i] === newValue)
+            alert("Fail")
+    }
+    puzzle[y][x] = 1 - newValue
+    alert(")
+}
+
+function CheckCell(y,x){
+    let newValue = 1 - puzzle[y][x]
+     if (ValidMove(y,x,newValue)){
+        puzzle[y][x]
+     }
+}
+
+
+
+
+/*function ValidMove(x, y, newValue) {
+    puzzle[y][x] = newValue
+    let valid = true
+
+    for (let j = 0; j < BOARDSIZE - 2; j++) {
+        if (grid[row][j] === grid[row][j + 1] && grid[row][j] === grid[row][j + 2] && grid[row][j] === newValue)
+            alert("Fail")
+    }
+    for (let i = 0; i < BOARDSIZE - 2; i++) {
+        if (grid[col][i] === grid[col][i + 1] && grid[col][i] === grid[col][i + 2] && grid[col][i] === newValue)
+            alert("Fail")
+    }
+    puzzle[y][x] = 1 - newValue
+    alert("Valid Move")
+}*/
+function Undo() {
+    if (UndoMove.length > 0) {
+        let lastAction = UndoMove.pop();
+        RedoMove.push({
+            index: lastAction.index,
+            prev
+        });
+        puzzle[lastAction.index] = lastAction.prev
+    }
+}
+function Redo() {
+    if (RedoMove.length > 0) {
+        let lastRedo = RedoMove.pop();
+        UndoMove, push({
+            index:
+                lastRedo.index, prev:
+                puzzle[lastRedo.index]
+        });
+        puzzle[lastRedo.index] =
+            lastRedo.prev === 0 ? 1 : 0
+    }
+}
+
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    transition: background 0.3s;
+    color: 0.3s;
+}
+.Dark Mode{
+
+}

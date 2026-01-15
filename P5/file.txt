@@ -1,0 +1,295 @@
+   Lines
+   for (let i = 0; i < 20; i++) {
+      stroke(random(255), random(255), random(255));
+      line(random(width), random(height), random(width), random(height));
+    }
+  
+  function thickLines () {
+    for (let i = 1; i <= 10; i++) {
+      strokeWeight(i);
+      stroke(random(255), random(255), random(255));
+      line(random(width), random(height), random(width), random(height));
+    }
+    for (let i = 10; i >= 1; i--) {
+      strokeWeight(i);
+      stroke(random(255), random(255), random(255));
+      line(random(width), random(height), random(width), random(height));
+    }
+  }
+
+Grid
+function draw {
+        let spacing = 40; 
+        for (let x = 0; x <= width; x += spacing) {
+          stroke(random(255), random(255), random(255), random(255)); 
+          strokeWeight(5);
+          line(x, 0, x, height); 
+        }
+        for (let y = 0; y <= height; y += spacing) {
+          stroke(random(255), random(255), random(255), random(255)); 
+          strokeWeight(5);
+          line(0, y, width, y); 
+        }
+    }
+
+  function draw() {
+    let linesCount = 10; 
+    for (let i = 0; i < linesCount; i++) {
+      stroke(0);
+      line(0, (height / linesCount) * i, (width / linesCount) * i, height);
+    }
+  }
+
+Circle
+function setup() {
+    createCanvas(800, 600);
+    background(200);
+  }
+
+  function draw() {
+    noFill();
+    stroke(0, 0, 255);
+    strokeWeight(4);
+    ellipse(width / 2, height / 2, min(width, height) - 20);
+
+  let circles = 5;
+        for (let i = 1; i <= circles; i++) {
+          stroke(random(255), random(255), random(255));
+          noFill();
+          ellipse(width / 2, height / 2, (min(width, height) / circles) * i);
+        }
+
+        let rings = 5;
+        let colors = ["blue", "yellow", "orange", "purple", "black"];
+        for (let i = rings; i > 0; i--) {
+          fill(colors[i % colors.length]);
+          noStroke();
+          ellipse(width / 2, height / 2, (min(width, height) / rings) * i);
+        }
+        {
+            for (let i = 0; i < 5; i++) {
+              noFill();
+              stroke(random(255), random(255), random(255));
+              if (i % 2 === 0) {
+                ellipse(width / 2, height / 2, 100 + i * 20, 150);
+              } else {
+                ellipse(width / 2, height / 2, 150, 100 + i * 20);
+              }
+            }
+          }
+      }
+
+function setup() {
+    createCanvas(800, 600);
+    background(200);
+  }
+  
+function draw() 
+    fill(0, 255, 0);
+    arc(width / 2, height / 2, 200, 200, 0, PI);
+    
+        fill(255, 255, 0);
+        arc(width / 2, height / 2, 200, 200, QUARTER_PI, TWO_PI - QUARTER_PI, PIE);
+  
+  
+
+
+function scatterCards() {
+    for (let i = 0; i < 52; i++) {
+        cards[i].x = random(width - cardWidth);
+        cards[i].y = random(height - cardHeight);
+    }
+}
+
+
+CARDS 
+let img
+let deck = [] // an array to hold the deck
+let shown = [-1, -1] // the pip value of the displayed cards
+let turn = 0 // whose turn it is
+let cards = [52]
+let cardWidth = 72
+let cardHeight = 96
+function preload() {
+    img = loadImage("cards.png") // load the card sheet image
+}
+function setup() {
+    createCanvas(windowWidth, windowHeight)
+    background(150, 150, 50)
+    // put 0-51 in the array
+    for (let a = 0; a < 52; a++) { deck.push(a) }
+    for (let a = 0; a < 52; a++) { // shuffle the list
+        let t = floor(random(6, 52))
+        let tmp = deck[t]
+        deck[t] = deck[a]
+        deck[a] = tmp
+    }
+    //draw 2 card piles
+    image(img, 72 + 50, height / 2, 72, 96, 13 * 72, 0, 72, 96)
+    image(img, windowWidth / 2, height / 2, 72, 96, 13 * 72, 0, 72, 96)
+}
+function mouseClicked() {
+    let c = deck.pop() // get first number from list
+    shown[turn] = c % 13 // calculate its pip value
+    if (c) { // select the image source and draw it on screen
+        image(img, 72 * (3 + turn * 2), 150, 72, 96, (c % 13) * 72,
+            floor(c / 13) * 96, 72, 96)
+    }
+    turn = 1 - turn // toggle turn between 1 and 0
+    if (shown[0] == shown[1]) alert("SNAP!")
+    translate(2, 4);
+    rotate(5);
+}
+function scatterCards(n) {
+    for (let i = 0; i < n; i++) {
+        let c = deck.pop() // get first number from list
+
+        if (c) { // select the image source and draw it on screen
+            image(img, random(width), random(height), 72, 96, (c % 13) * 72,
+                floor(c / 13) * 96, 72, 96)
+        }
+    }
+}
+
+for (let a = 0; a < 8; a++) {
+    MAXSIZE.push('Dan', 'John', 'Doe')
+}
+
+
+class Stack {
+    constructor(maxSize) {
+      this.maxSize = maxSize;  // The maximum capacity of the stack
+      this.items = [];          // The stack's array to hold the elements
+    }
+  
+    // Function to check if the stack is full
+    isFull() {
+      return this.items.length >= this.maxSize;
+    }
+  
+    // Function to push an item onto the stack
+    push(item) {
+      if (this.isFull()) {
+        console.log("Stack is full. Cannot push new item.");
+      } else {
+        this.items.push(item);
+      }
+    }
+  
+    // Function to pop an item from the stack
+    pop() {
+      if (this.isEmpty()) {
+        console.log("Stack is empty. Cannot pop.");
+      } else {
+        return this.items.pop();
+      }
+    }
+  
+    // Function to check if the stack is empty
+    isEmpty() {
+      return this.items.length === 0;
+    }
+  }
+  
+  // Example usage:
+  const stack = new Stack(3);  // Stack with a max size of 3
+  
+  stack.push(1);
+  stack.push(2);
+  stack.push(3);
+  console.log(stack.isFull());  // Should return true
+  
+  stack.push(4);  // Should log: Stack is full. Cannot push new item.
+
+
+
+
+'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'
+
+
+
+BinarySearch
+
+ 
+Ludo.js
+let diceRoll = 0
+let windowWidth = 600
+let cellSize = windowWidth / 15
+let players = ['Red', 'Green', ' Yellow', 'Blue']
+let currentPlayer = 0
+let pieces = []
+let diceButton;
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    diceButton = createButton('Roll Dice')
+    diceButton.position(windowWidth + 10, 20)
+    diceButton.mousePressed(rollDice)
+
+    for (let i = 0; i < 4; i++) {
+        pieces[i] = [];
+        for (let j = 0; j < 4; j++) {
+            pieces[i].push(createVector(0, 0));
+
+        }
+    }
+}
+function draw() {
+    background(255)
+}
+function drawBoard() {
+    for (let i = 0; i < 15; i++) {
+        for (let j = 0; j < 15; j++) {
+            stroke(0)
+            noFill()
+            rect(i * cellSize, j * cellSize, cellSize, cellSize)
+
+            if (i < 5 && j < 5) { //RED
+                fill(255, 0, 0)
+            }
+            else if (i > 9 && j < 5) { //Green
+                fill(0, 255, 0)
+            }
+            else if (i < 5 && j > 9) {
+                fill(0, 0, 255)
+            }
+            else noFill()
+            rect(i * cellSize, j * cellSize, cellSize, cellSize)
+        }
+    }
+}
+
+function drawPieces() {
+    for (let p = 0; p < players.length; p++) {
+        for (let i = 0; i < 4; i++) {
+            let piece = pieces[p][i];
+            if (p = 0) {
+                fill(255, 0, 0)
+            } else if (p == 1) {
+                fill(0, 255, 0)
+            } else if (p == 2) {
+                fill(255, 255, 0)
+            } else fill(0, 0, 255)
+
+            ellipse(piece.x * cellSize + cellSize / 2, piece.y * cellSize + cell / 2, cellSize / 2);
+        }
+    }
+}
+function drawDiceRoll() {
+    fill(0)
+    textSize(24)
+    textAlign(CENTER, CENTER)
+    text('Dice Roll; ' + diceRoll, windowWidth / 2, windowWidth + 30)
+}
+function rollDice() {
+    diceRoll = floor(random(1, 7))
+    console.log("Player" + players[currentPlayer] + "rolled:" + diceRoll)
+    movePiece(diceRoll)
+    currentPlayer = (currentPlayer + 1) % 4
+}
+function movePiece(roll) {
+    let piece = pieces[currentPlayer[0]]
+    piece.x = (piece.x + roll) % 15
+    piece.y = floor((piece.x + roll) / 15)
+
+}

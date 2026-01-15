@@ -1,0 +1,111 @@
+function drawPlayer() {
+    fill(0, 135, 150);
+    rect(player.x * cellSize, player.y * cellSize, cellSize, cellSize)
+}
+
+    <!-- Code injected by Five-server -->
+    <script async data-id="five-server"
+        data-file="d:\Users\24OkoroPentecost\OneDrive - csfc\Downloads\BasicMaze\index.html"
+        type="application/javascript" src="/fiveserver.js"></script>
+</head>
+
+
+class Player {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+
+    }
+
+    draw() {
+        fill(0, 135, 150);
+        rect(player.x * cellSize, player.y * cellSize, cellSize, cellSize)
+    }
+    up() {
+        // check if the player can move up the screen by 1
+        // position above the player has same x value ( 0 difference) and decrease in y (-1 difference)
+        this.checkTarget(0, -1);
+        // change which character image is being used
+
+    }
+    right() {
+        // TASK 5: make the player move right
+        // TODO: write similar code to the up() function, but make this increase the x position by one, whilst keeping y the same. Use image 1 from the playerImages array
+        this.checkTarget(1, 0);
+
+    }
+    // TASK 6: add code to allow player to move left and down. 
+    // TODO: Create a function called down() that checks the location below the player and uses the down image (image 2)
+    down() {
+        this.checkTarget(0, 1)
+    }
+    // TODO: Create a function called left() that checks the location to the left of the player and uses the left image (image 3)
+    left() {
+        this.checkTarget(-1, 0);
+    }
+    checkTarget(dx, dy) {
+        // Examine the target location's value and take appropriate action
+        // Target is player position plus the x and y changes passed as dx dy
+        // 3 is firepit, 2 is exit, 1 is wall 0 is path
+
+        switch (level[this.y + dy][this.x + dx]) {
+            case 0:      // array contains 0 at that position - it's path
+                // so change player position
+                this.x += dx;
+                this.y += dy;
+                break
+            case 1: // it's wall
+                // don't change anything
+                break
+            // TASK 7: extend this switch statement to check if the target cell is an exit or a firepit
+            // TODO: add case statement to deal with exit (2) - gameState should be changed to GSWIN
+            // TODO: add case statement to deal with firepit (3) - gameState should be changed to GSLOSE
+            case 2:
+                gameState = GSWIN;
+                break
+            case 3:
+                gameState = GSLOSE;
+                break
+        }
+    }
+
+}
+
+function keyPressed() {
+    // use wasd to navigate
+    console.log(key)
+    switch (key) {
+        case "w":
+            player.up();
+            break;
+        case "d":
+            player.right();
+            break;
+        // TASK 6: complete the player movement code
+
+        // TODO: add case statement to deal with "s" key press, that calls the down() method of player
+        case "s":
+            player.down();
+            break;
+
+        // TODO: add case statement to deal with "a" key press, that calls the left() method of player
+        case "a":
+            player.left();
+            break;
+        default:
+            break;
+    }
+}
+
+function keyPressed() {
+    let { x, y } = player;
+    if (key === "a" && x > 0 && maze[y][x - 1] === 0) player.x--;
+    else if (key === "d" && x < col - 1 && maze[y][x + 1] === 0) player.x++;
+    else if (key === "w" && y > 0 && maze[y - 1][x] === 0) player.y--;
+    else if (key === "s" && y < row - 1 && maze[y + 1][x] === 0) player.y++;
+
+    if (player.x === goal.x && player.y === goal.y) {
+        noLoop();
+        setTimeout(() => alert("You Won!"), 100)
+    }
+}

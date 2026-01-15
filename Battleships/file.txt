@@ -1,0 +1,48 @@
+ playerGuesses=Array(gridSize).fill().map(()=>Array(gridSize).fill(0));
+    shipBoard = Array(gridSize).fill().map(()=> Array(gridSize).fill(0));
+    placeAllShips();
+
+    text("You sank all ships!",)
+    
+
+function placeAllShips() {
+    for (let ship of ships) {  
+        let placed = false;
+        totalHitsNeeded += ship.size;
+        while (!placed) {
+            let dir = random(['H', 'V']);
+            let x = floor(random(gridSize));
+            let y = floor(random(gridSize));
+            if (canPlaceShip(x, y, dir, ship.size)) {
+                placeShips(x, y, dir, ship.size);  
+                placed = true;
+            }
+        }
+    }
+}
+
+function canPlaceShip(x, y, dir, size) {
+    if (dir === 'H') {
+        if (x + size > gridSize) return false;
+        for (let i = 0; i < size; i++) { 
+            if (shipBoard[y][x + i] === 1) return false;  
+        }
+    } else {
+        if (y + size > gridSize) return false;
+        for (let i = 0; i < size; i++) {  
+            if (shipBoard[y + i][x] === 1) return false; 
+        }
+    }
+    return true;
+}
+
+function placeShips(x, y, dir, size) {
+    if (dir === 'H') {
+        for (let i = 0; i < size; i++) {
+            shipBoard[y][x + i] = 1;
+        }
+    } else {
+        for (let i = 0; i < size; i++) {
+            shipBoard[y + i][x] = 1;
+        }
+    }
